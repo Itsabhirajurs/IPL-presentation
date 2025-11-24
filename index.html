@@ -1,260 +1,281 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Debugging & Testing — Presentation</title>
-  <style>
-    :root{--bg:#0f1724;--card:#0b1220;--muted:#94a3b8;--accent:#7c3aed;--glass:rgba(255,255,255,0.03)}
-    html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#071024 0%, #07162a 100%);color:#e6eef8}
-    .wrap{max-width:1100px;margin:28px auto;padding:28px}
-    header{display:flex;align-items:center;gap:18px}
-    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:700;color:white}
-    h1{margin:0;font-size:28px}
-    p.lead{margin:6px 0 22px;color:var(--muted)}
-
-    .grid{display:grid;grid-template-columns:320px 1fr;gap:20px}
-    nav{background:var(--card);padding:12px;border-radius:12px;position:sticky;top:24px;height:calc(100vh - 48px);overflow:auto}
-    nav a{display:block;padding:10px;border-radius:8px;color:var(--muted);text-decoration:none;margin-bottom:6px}
-    nav a:hover{background:var(--glass);color:#fff}
-    main{background:transparent;padding:12px}
-    section.card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:18px;border-radius:12px;margin-bottom:14px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
-    h2{margin-top:0}
-    pre{background:#001123;padding:12px;border-radius:8px;overflow:auto;color:#dff4ff}
-    code{font-family:SFMono-Regular,Menlo,monospace;font-size:13px}
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--muted);font-size:13px}
-
-    /* Flowchart SVG container */
-    .flow{display:flex;justify-content:center;padding:12px}
-
-    /* Speaker notes */
-    .notes{margin-top:10px;padding:10px;background:rgba(255,255,255,0.02);border-left:3px solid var(--accent);color:var(--muted);border-radius:6px}
-
-    footer{color:var(--muted);font-size:13px;text-align:center;padding:12px}
-
-    /* Responsive */
-    @media (max-width:900px){.grid{grid-template-columns:1fr}.wrap{padding:18px}nav{position:relative;height:auto}}
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testing and Debugging in Programming</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        pre {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .flowchart {
+            white-space: pre;
+            background: #eef;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        ul {
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo">DT</div>
-      <div>
-        <h1>Debugging & Testing — Presentation</h1>
-        <p class="lead">A beginner-friendly, interactive slide-style single-page presentation you can deploy to Netlify via GitHub.</p>
-      </div>
-    </header>
+    <div class="container">
+        <h1>✅ Testing and Debugging in Programming</h1>
+        <p>Programming involves two essential activities to ensure that software works correctly:</p>
+        <ul>
+            <li><strong>Testing</strong> – ➡️ Finding the problems.</li>
+            <li><strong>Debugging</strong> – ➡️ Fixing the problems.</li>
+        </ul>
+        <p>They are related, but NOT the same.</p>
 
-    <div class="grid">
-      <nav>
-        <a href="#overview">Overview</a>
-        <a href="#definitions">Definitions</a>
-        <a href="#flowcharts">Flowcharts</a>
-        <a href="#examples">Examples</a>
-        <a href="#types">Types of Testing & Bugs</a>
-        <a href="#usage">Usage & Applications</a>
-        <a href="#analogy">Real-time Analogy</a>
-        <a href="#interactive">Interactive Tips</a>
-        <a href="#deploy">Deploy to Netlify</a>
-      </nav>
+        <div class="section">
+            <h2>🎯 1. What is Testing?</h2>
+            <h3>Definition</h3>
+            <p>Testing is the process of executing a program to find errors, check if the output is correct, and ensure the software behaves as expected.</p>
 
-      <main>
-        <section id="overview" class="card">
-          <h2>Overview</h2>
-          <p>Testing and debugging are complementary activities in software development. <strong>Testing</strong> finds problems; <strong>debugging</strong> finds and fixes their causes. Use testing to prove correctness; use debugging to repair defects.</p>
-          <div class="notes"><strong>Speaker note:</strong> Start the talk by asking: "Who has seen a program crash?" Use that to motivate testing (prevention) and debugging (cure).</div>
-        </section>
+            <h3>Purpose of Testing</h3>
+            <ul>
+                <li>Detect defects before deployment</li>
+                <li>Improve software quality</li>
+                <li>Ensure performance, accuracy, and correctness</li>
+                <li>Check if features meet requirements</li>
+            </ul>
 
-        <section id="definitions" class="card">
-          <h2>Definitions</h2>
-          <div class="two-col">
-            <div>
-              <h3>Debugging</h3>
-              <p><span class="badge">What</span> Finding, analyzing and fixing bugs (errors) in code.</p>
-              <p><span class="badge">Common tools</span> Debugger, print/log statements, stack traces, unit tests.</p>
+            <h3>When does testing happen?</h3>
+            <ul>
+                <li>Before launching the software</li>
+                <li>After each update</li>
+                <li>During development (Unit Testing)</li>
+            </ul>
+
+            <h2>⚙️ Types of Testing</h2>
+            <h3>1️⃣ Manual Testing</h3>
+            <p>Humans test the software by operating it manually.</p>
+
+            <h3>2️⃣ Automation Testing</h3>
+            <p>Tools test the software automatically (Selenium, JUnit, PyTest).</p>
+
+            <h3>3️⃣ Common Types</h3>
+            <table>
+                <tr><th>Type</th><th>What it checks</th></tr>
+                <tr><td>Unit Testing</td><td>Individual functions or methods</td></tr>
+                <tr><td>Integration Testing</td><td>Combined modules interact correctly</td></tr>
+                <tr><td>System Testing</td><td>Whole system works properly</td></tr>
+                <tr><td>Acceptance Testing</td><td>Final check before release</td></tr>
+                <tr><td>Regression Testing</td><td>New changes didn’t break old features</td></tr>
+            </table>
+
+            <h3>👀 Example of Testing</h3>
+            <pre>def add(a, b):
+    return a + b
+
+# Test case
+print(add(2, 3))  # Expected output: 5</pre>
+            <p>If output ≠ expected → test fails, and debugging is required.</p>
+
+            <h3>🧪 Testing Flowchart</h3>
+            <div class="flowchart">
++------------------+
+|  Start Testing   |
++------------------+
+          |
+          v
++----------------------+
+| Execute Test Cases   |
++----------------------+
+          |
+          v
++-------------------------+
+| Output correct?         |
++-------------------------+
+    |              |
+   Yes            No
+    |              |
+    v              v
++----------------+  +----------------------+
+| Testing Passed |  | Log the Defect      |
++----------------+  +----------------------+
+                      |
+                      v
+              +------------------+
+              | Send for Debug   |
+              +------------------+
             </div>
-            <div>
-              <h3>Testing</h3>
-              <p><span class="badge">What</span> Verifying code behaves as expected via test cases.</p>
-              <p><span class="badge">Common tools</span> Unit testing frameworks (pytest, JUnit), CI (GitHub Actions), Selenium.</p>
+        </div>
+
+        <div class="section">
+            <h2>🔧 2. What is Debugging?</h2>
+            <h3>Definition</h3>
+            <p>Debugging is the process of identifying, analyzing, and fixing the errors found during testing or during program execution.</p>
+
+            <h3>Purpose</h3>
+            <ul>
+                <li>Solve the defect, not just detect it</li>
+                <li>Understand the cause of the error</li>
+                <li>Make the software run without failures</li>
+            </ul>
+
+            <h3>When does debugging happen?</h3>
+            <ul>
+                <li>After a failed test</li>
+                <li>When a program crashes</li>
+                <li>When unexpected output appears</li>
+            </ul>
+
+            <h3>🔍 Debugging Steps</h3>
+            <ul>
+                <li>Identify the bug</li>
+                <li>Reproduce the error</li>
+                <li>Locate the source line</li>
+                <li>Analyze the cause</li>
+                <li>Fix the code</li>
+                <li>Retest</li>
+                <li>Confirm the fix</li>
+            </ul>
+
+            <h3>🧰 Debugging Techniques</h3>
+            <table>
+                <tr><th>Technique</th><th>Description</th></tr>
+                <tr><td>Print statements</td><td>Check values step-by-step</td></tr>
+                <tr><td>Debugger tools</td><td>Breakpoints, step-into, watch variables</td></tr>
+                <tr><td>Code review</td><td>Manual checking</td></tr>
+                <tr><td>Rubber Duck Debugging</td><td>Explain your code to someone (or a toy!)</td></tr>
+                <tr><td>Logging</td><td>Recording program events</td></tr>
+            </table>
+
+            <h3>🐞 Debugging Example</h3>
+            <pre># Buggy Code:
+x = 10
+y = 0
+print(x / y)  # Error: Division by zero
+
+# Debugging Fix:
+if y != 0:
+    print(x / y)
+else:
+    print("Cannot divide by zero")</pre>
+
+            <h3>🪲 Debugging Flowchart</h3>
+            <div class="flowchart">
+     +-----------------+
+     |  Bug Reported   |
+     +-----------------+
+              |
+              v
+   +--------------------------+
+   | Reproduce the Bug       |
+   +--------------------------+
+              |
+              v
+   +--------------------------+
+   | Locate Error in Code    |
+   +--------------------------+
+              |
+              v
+   +--------------------------+
+   | Analyze Root Cause      |
+   +--------------------------+
+              |
+              v
+   +--------------------------+
+   |   Fix the Code          |
+   +--------------------------+
+              |
+              v
+   +--------------------------+
+   |    Retest Program       |
+   +--------------------------+
+              |
+              v
+      +------------------+
+      |  Fixed?          |
+      +------------------+
+       |         |
+      Yes        No
+       |         |
+       v         v
++---------------+   +----------------------+
+| Close Issue   |   | Repeat Debugging     |
++---------------+   +----------------------+
             </div>
-          </div>
-        </section>
+        </div>
 
-        <section id="flowcharts" class="card">
-          <h2>Flowcharts</h2>
-          <p>Two concise flowcharts — one for Testing, one for Debugging.</p>
+        <div class="section">
+            <h2>🆚 Difference Between Testing and Debugging</h2>
+            <table>
+                <tr><th>Feature</th><th>Testing</th><th>Debugging</th></tr>
+                <tr><td>Meaning</td><td>Finding defects</td><td>Fixing defects</td></tr>
+                <tr><td>Who does it?</td><td>Testers / QA</td><td>Developers</td></tr>
+                <tr><td>Goal</td><td>Check correctness</td><td>Correct incorrectness</td></tr>
+                <tr><td>Focus</td><td>Output</td><td>Code (logic & flow)</td></tr>
+                <tr><td>Time</td><td>Before release</td><td>Any time a bug is found</td></tr>
+            </table>
+        </div>
 
-          <div class="flow">
-            <!-- Testing flowchart SVG -->
-            <svg width="480" height="220" viewBox="0 0 480 220" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <style>.t{fill:#071b2a;stroke:#1f6fab;stroke-width:2}.txt{fill:#e6eef8;font-family:Inter,Arial;font-size:12px}</style>
-              </defs>
-              <rect x="10" y="10" width="120" height="36" rx="8" class="t"/>
-              <text x="70" y="32" text-anchor="middle" class="txt">Start Testing</text>
+        <div class="section">
+            <h2>🌍 Real-Life Analogy</h2>
+            <p><strong>Testing</strong> = Taking your car for inspection to find problems.</p>
+            <p><strong>Debugging</strong> = Mechanic repairing the issues found.</p>
+            <p>Both are necessary to make the car (software) run smoothly.</p>
+        </div>
 
-              <rect x="170" y="10" width="140" height="36" rx="8" class="t"/>
-              <text x="240" y="32" text-anchor="middle" class="txt">Run Test Cases</text>
+        <div class="section">
+            <h2>💡 Applications & Usage</h2>
+            <h3>Testing</h3>
+            <ul>
+                <li>Ensuring new apps work on all devices</li>
+                <li>Checking online payment systems</li>
+                <li>Validating database operations</li>
+                <li>Verifying AI/ML model outputs</li>
+            </ul>
 
-              <rect x="170" y="70" width="140" height="36" rx="8" class="t"/>
-              <text x="240" y="92" text-anchor="middle" class="txt">Compare Expected vs Actual</text>
-
-              <rect x="10" y="130" width="120" height="36" rx="8" class="t"/>
-              <text x="70" y="152" text-anchor="middle" class="txt">Testing Passed</text>
-
-              <rect x="170" y="130" width="140" height="36" rx="8" class="t"/>
-              <text x="240" y="152" text-anchor="middle" class="txt">Report Bug</text>
-
-              <!-- arrows -->
-              <line x1="130" y1="28" x2="170" y2="28" stroke="#9fd1ff" stroke-width="2" marker-end="url(#arrow)"/>
-              <line x1="240" y1="46" x2="240" y2="70" stroke="#9fd1ff" stroke-width="2"/>
-              <line x1="170" y1="106" x2="130" y2="106" stroke="#9fd1ff" stroke-width="2"/>
-              <line x1="310" y1="106" x2="370" y2="106" stroke="#9fd1ff" stroke-width="2"/>
-
-              <defs>
-                <marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto">
-                  <path d="M0,0 L10,5 L0,10 z" fill="#9fd1ff" />
-                </marker>
-              </defs>
-            </svg>
-          </div>
-
-          <div class="flow">
-            <!-- Debugging flowchart SVG -->
-            <svg width="480" height="260" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg">
-              <style>.b{fill:#071b2a;stroke:#f472b6;stroke-width:2}.txt{fill:#e6eef8;font-family:Inter,Arial;font-size:12px}</style>
-              <rect x="10" y="10" width="140" height="36" rx="8" class="b"/>
-              <text x="80" y="32" text-anchor="middle" class="txt">Bug Detected</text>
-
-              <rect x="10" y="70" width="140" height="36" rx="8" class="b"/>
-              <text x="80" y="92" text-anchor="middle" class="txt">Reproduce Error</text>
-
-              <rect x="170" y="70" width="220" height="36" rx="8" class="b"/>
-              <text x="280" y="92" text-anchor="middle" class="txt">Analyze Code (logs/debugger)</text>
-
-              <rect x="10" y="130" width="140" height="36" rx="8" class="b"/>
-              <text x="80" y="152" text-anchor="middle" class="txt">Identify Cause</text>
-
-              <rect x="170" y="130" width="220" height="36" rx="8" class="b"/>
-              <text x="280" y="152" text-anchor="middle" class="txt">Fix & Patch</text>
-
-              <rect x="170" y="190" width="220" height="36" rx="8" class="b"/>
-              <text x="280" y="212" text-anchor="middle" class="txt">Retest (regression)</text>
-
-              <line x1="80" y1="46" x2="80" y2="70" stroke="#ffd1eb" stroke-width="2" marker-end="url(#a)"/>
-              <line x1="150" y1="88" x2="170" y2="88" stroke="#ffd1eb" stroke-width="2" marker-end="url(#a)"/>
-              <line x1="80" y1="106" x2="80" y2="130" stroke="#ffd1eb" stroke-width="2" marker-end="url(#a)"/>
-              <line x1="170" y1="148" x2="150" y2="148" stroke="#ffd1eb" stroke-width="2" marker-end="url(#a)"/>
-              <line x1="280" y1="166" x2="280" y2="190" stroke="#ffd1eb" stroke-width="2" marker-end="url(#a)"/>
-
-              <defs>
-                <marker id="a" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto">
-                  <path d="M0,0 L10,5 L0,10 z" fill="#ffd1eb" />
-                </marker>
-              </defs>
-            </svg>
-          </div>
-        </section>
-
-        <section id="examples" class="card">
-          <h2>Examples (ready for live demo)</h2>
-
-          <h3>Debugging example (Python)</h3>
-          <pre><code># Bug: division by zero
-
-def divide(a, b):
-    return a / b
-
-print(divide(10, 0))
-
-# Fix:
-def divide(a, b):
-    if b == 0:
-        return "Error: cannot divide by zero"
-    return a / b
-</code></pre>
-
-          <h3>Testing example (table of test cases)</h3>
-          <pre><code># Unit-style tests (pseudo)
-# test_divide_normal -> divide(10,2) == 5
-# test_divide_zero -> divide(10,0) == "Error: cannot divide by zero"
-# test_divide_negative -> divide(-4,2) == -2
-</code></pre>
-
-          <div class="notes"><strong>Speaker note:</strong> Run the buggy code live, let it crash, then show the fixed version and re-run. Invite students to suggest test cases before fixing.</div>
-        </section>
-
-        <section id="types" class="card">
-          <h2>Types of Testing & Types of Bugs</h2>
-          <ul>
-            <li><strong>Unit testing</strong> — smallest parts (functions/classes)</li>
-            <li><strong>Integration testing</strong> — combined modules work together</li>
-            <li><strong>System testing</strong> — whole app end-to-end</li>
-            <li><strong>Acceptance testing</strong> — user/requirements validation</li>
-          </ul>
-
-          <p><strong>Bug types:</strong> Syntax, Runtime, Logical, Semantic, Performance, Security.</p>
-        </section>
-
-        <section id="usage" class="card">
-          <h2>Usage & Applications</h2>
-          <p>Where you see these in industry:</p>
-          <ul>
-            <li>CI/CD pipelines — run tests automatically on each push</li>
-            <li>Automated regression suites — prevent re-introducing bugs</li>
-            <li>Performance & load testing — ensure reliability</li>
-            <li>Security testing — protect user data</li>
-          </ul>
-          <div class="notes"><strong>Speaker note:</strong> Mention famous tools: pytest, JUnit, Selenium, GitHub Actions, Jenkins, JMeter.</div>
-        </section>
-
-        <section id="analogy" class="card">
-          <h2>Real-time Analogy</h2>
-          <p><strong>Testing</strong> is like checking everything after a car service — test brakes, lights, and take a short drive. <strong>Debugging</strong> is like the mechanic diagnosing and replacing a faulty part after the test drive shows an issue.</p>
-          <div class="notes">Ask students for their own analogies to make the talk interactive.</div>
-        </section>
-
-        <section id="interactive" class="card">
-          <h2>Interactive Class Activities</h2>
-          <ol>
-            <li>Pair up: one writes a function, the other writes tests.</li>
-            <li>Bug hunt: give a file with intentional bugs, first to fix wins a small prize.</li>
-            <li>Regression relay: add a feature, write tests, run CI locally (or workflow demo).</li>
-          </ol>
-        </section>
-
-        <section id="deploy" class="card">
-          <h2>Deploy to Netlify (connect via GitHub)</h2>
-          <p>Quick steps to publish this single-file site:</p>
-          <ol>
-            <li>Create a new GitHub repository (public or private).</li>
-            <li>Add this file as <code>index.html</code> at the repository root and commit & push.</li>
-            <li>Open <strong>Netlify</strong> → <em>New site</em> → <em>Import from Git</em> → choose GitHub and authorize.</li>
-            <li>Select your repo. Netlify will detect a static site. Leave build command blank and set publish directory to the repository root (or simply accept defaults).</li>
-            <li>Click deploy — Netlify will build and give a live URL. Use the site URL in your presentation or share it with classmates.</li>
-          </ol>
-
-          <p class="notes"><strong>Alternative:</strong> Use Netlify "Drag and drop" deploy (site > Deploys > drag index.html onto the page) for a one-off quick publish.</p>
-        </section>
-
-        <footer>
-          <div>Made for an MSc/MCA class demo — editable, copy-paste friendly.</div>
-        </footer>
-      </main>
+            <h3>Debugging</h3>
+            <ul>
+                <li>Fixing website crashes</li>
+                <li>Solving mobile app bugs</li>
+                <li>Handling server errors</li>
+                <li>Fixing incorrect ML predictions</li>
+            </ul>
+        </div>
     </div>
-  </div>
-
-  <script>
-    // Smooth scroll for nav links
-    document.querySelectorAll('nav a').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth',block:'start'});
-      });
-    });
-  </script>
 </body>
 </html>
