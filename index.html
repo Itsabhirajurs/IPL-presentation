@@ -1,178 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Testing and Debugging in Programming</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f7f7f7;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3 {
-            color: #333;
-        }
-        .section {
-            margin-bottom: 30px;
-        }
-        pre {
-            background: #272822;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-        table, th, td {
-            border: 1px solid #ccc;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        .flowchart {
-            white-space: pre;
-            background: #eef;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-        }
-        ul {
-            margin-top: 5px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testing & Debugging in Programming</title>
+
+<style>
+    body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f7f9fc;
+        margin: 0;
+        padding: 20px;
+        line-height: 1.6;
+        color: #222;
+    }
+
+    h1, h2, h3 {
+        color: #2c3e50;
+    }
+
+    .section {
+        background: #ffffff;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .flowchart {
+        margin: 20px auto;
+        padding: 20px;
+        background: #eef3ff;
+        border-radius: 12px;
+        width: 90%;
+        text-align: center;
+        border-left: 5px solid #4a6cf7;
+    }
+
+    .box {
+        display: inline-block;
+        padding: 12px 18px;
+        background: white;
+        border: 2px solid #4a6cf7;
+        border-radius: 10px;
+        margin: 10px;
+        font-weight: bold;
+    }
+
+    .arrow {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 5px 0;
+        color: #444;
+        display: block;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    table, th, td {
+        border: 1px solid #999;
+    }
+
+    th {
+        background: #4a6cf7;
+        color: #fff;
+        padding: 8px;
+    }
+
+    td {
+        padding: 8px;
+        background: #fff;
+    }
+
+    pre {
+        background: #222;
+        color: #0f0;
+        padding: 15px;
+        border-radius: 10px;
+        overflow-x: auto;
+    }
+
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>✅ Testing and Debugging in Programming</h1>
-        <p>Programming involves two essential activities to ensure that software works correctly:</p>
-        <ul>
-            <li><strong>Testing</strong> – ➡️ Finding the problems.</li>
-            <li><strong>Debugging</strong> – ➡️ Fixing the problems.</li>
-        </ul>
-        <p>They are related, but NOT the same.</p>
 
-        <div class="section">
-            <h2>🎯 1. What is Testing?</h2>
-            <h3>Definition</h3>
-            <p>Testing is the process of executing a program to find errors, check if the output is correct, and ensure the software behaves as expected.</p>
+<h1>✅ Testing and Debugging in Programming</h1>
 
-            <h3>Purpose of Testing</h3>
-            <ul>
-                <li>Detect defects before deployment</li>
-                <li>Improve software quality</li>
-                <li>Ensure performance, accuracy, and correctness</li>
-                <li>Check if features meet requirements</li>
-            </ul>
+<div class="section">
+<h2>Programming involves two essential activities:</h2>
+<p><b>1. Testing</b> → Finding the problems.</p>
+<p><b>2. Debugging</b> → Fixing the problems.</p>
+<p>They are related, but <b>NOT the same.</b></p>
+</div>
 
-            <h3>When does testing happen?</h3>
-            <ul>
-                <li>Before launching the software</li>
-                <li>After each update</li>
-                <li>During development (Unit Testing)</li>
-            </ul>
+<div class="section">
+<h2>🎯 1. What is Testing?</h2>
+<p>Testing is the process of executing a program to find errors, check if the output is correct, and ensure the software behaves as expected.</p>
 
-            <h2>⚙️ Types of Testing</h2>
-            <h3>1️⃣ Manual Testing</h3>
-            <p>Humans test the software by operating it manually.</p>
+<h3>Purpose of Testing</h3>
+<ul>
+<li>Detect defects before deployment</li>
+<li>Improve software quality</li>
+<li>Ensure performance, accuracy, and correctness</li>
+<li>Check if features meet requirements</li>
+</ul>
 
-            <h3>2️⃣ Automation Testing</h3>
-            <p>Tools test the software automatically (Selenium, JUnit, PyTest).</p>
+<h3>When does testing happen?</h3>
+<ul>
+<li>Before launching the software</li>
+<li>After each update</li>
+<li>During development (Unit Testing)</li>
+</ul>
 
-            <h3>3️⃣ Common Types</h3>
-            <table>
-                <tr><th>Type</th><th>What it checks</th></tr>
-                <tr><td>Unit Testing</td><td>Individual functions or methods</td></tr>
-                <tr><td>Integration Testing</td><td>Combined modules interact correctly</td></tr>
-                <tr><td>System Testing</td><td>Whole system works properly</td></tr>
-                <tr><td>Acceptance Testing</td><td>Final check before release</td></tr>
-                <tr><td>Regression Testing</td><td>New changes didn’t break old features</td></tr>
-            </table>
+<h3>⚙️ Types of Testing</h3>
 
-            <h3>👀 Example of Testing</h3>
-            <pre>def add(a, b):
+<p><b>1️⃣ Manual Testing</b> – Humans test manually.</p>
+<p><b>2️⃣ Automation Testing</b> – Tools test automatically (Selenium, PyTest, JUnit).</p>
+
+<h3>Common Types</h3>
+<table>
+<tr><th>Type</th><th>What it checks</th></tr>
+<tr><td>Unit Testing</td><td>Individual functions or methods</td></tr>
+<tr><td>Integration Testing</td><td>Combined modules interact correctly</td></tr>
+<tr><td>System Testing</td><td>Entire system works properly</td></tr>
+<tr><td>Acceptance Testing</td><td>Final check before release</td></tr>
+<tr><td>Regression Testing</td><td>No old features are broken</td></tr>
+</table>
+
+<h3>👀 Example of Testing</h3>
+
+<pre>
+def add(a, b):
     return a + b
 
 # Test case
-print(add(2, 3))  # Expected output: 5</pre>
-            <p>If output ≠ expected → test fails, and debugging is required.</p>
+print(add(2, 3))  # Expected output: 5
+</pre>
 
-            <h3>🧪 Testing Flowchart</h3>
-            <div class="flowchart">
-<div class="flow-box">Bug Reported</div>
-<div class="arrow">⬇️</div>
-<div class="flow-box">Reproduce the Bug</div>
-<div class="arrow">⬇️</div>
-<div class="flow-box">Locate Error in Code</div>
-<div class="arrow">⬇️</div>
-<div class="flow-box">Analyze Root Cause</div>
-<div class="arrow">⬇️</div>
-<div class="flow-box">Fix the Code</div>
-<div class="arrow">⬇️</div>
-<div class="flow-box">Retest Program</div>
-<div class="arrow">⬇️</div>
-<div class="flow-box">Fixed?</div>
-<div class="split">
-    <div>
-        <div class="arrow">➡️ Yes</div>
-        <div class="flow-box">Close Issue</div>
-    </div>
-    <div>
-        <div class="arrow">➡️ No</div>
-        <div class="flow-box">Repeat Debugging</div>
-    </div>
+<p>If output ≠ expected → test fails → debugging required.</p>
+
+<h3>🧪 Testing Flowchart</h3>
+
+<div class="flowchart">
+    <div class="box">Start Testing</div>
+    <span class="arrow">⬇️</span>
+
+    <div class="box">Execute Test Cases</div>
+    <span class="arrow">⬇️</span>
+
+    <div class="box">Output Correct?</div>
+
+    <span class="arrow">⬇️ Yes</span>
+    <div class="box">Testing Passed</div>
+
+    <span class="arrow">⬇️ No</span>
+    <div class="box">Log the Defect</div>
+    <span class="arrow">⬇️</span>
+    <div class="box">Send for Debug</div>
 </div>
-</div>ble>
-                <tr><th>Feature</th><th>Testing</th><th>Debugging</th></tr>
-                <tr><td>Meaning</td><td>Finding defects</td><td>Fixing defects</td></tr>
-                <tr><td>Who does it?</td><td>Testers / QA</td><td>Developers</td></tr>
-                <tr><td>Goal</td><td>Check correctness</td><td>Correct incorrectness</td></tr>
-                <tr><td>Focus</td><td>Output</td><td>Code (logic & flow)</td></tr>
-                <tr><td>Time</td><td>Before release</td><td>Any time a bug is found</td></tr>
-            </table>
-        </div>
+</div>
 
-        <div class="section">
-            <h2>🌍 Real-Life Analogy</h2>
-            <p><strong>Testing</strong> = Taking your car for inspection to find problems.</p>
-            <p><strong>Debugging</strong> = Mechanic repairing the issues found.</p>
-            <p>Both are necessary to make the car (software) run smoothly.</p>
-        </div>
+<div class="section">
+<h2>🔧 2. What is Debugging?</h2>
+<p>Debugging is the process of identifying, analyzing, and fixing the errors found during testing or program execution.</p>
 
-        <div class="section">
-            <h2>💡 Applications & Usage</h2>
-            <h3>Testing</h3>
-            <ul>
-                <li>Ensuring new apps work on all devices</li>
-                <li>Checking online payment systems</li>
-                <li>Validating database operations</li>
-                <li>Verifying AI/ML model outputs</li>
-            </ul>
+<h3>Purpose</h3>
+<ul>
+<li>Solve the defect</li>
+<li>Understand the cause of the error</li>
+<li>Ensure software runs without failures</li>
+</ul>
 
-            <h3>Debugging</h3>
-            <ul>
-                <li>Fixing website crashes</li>
-                <li>Solving mobile app bugs</li>
-                <li>Handling server errors</li>
-                <li>Fixing incorrect ML predictions</li>
-            </ul>
-        </div>
-    </div>
+<h3>When does debugging happen?</h3>
+<ul>
+<li>After a failed test</li>
+<li>When a program crashes</li>
+<li>Unexpected or wrong output appears</li>
+</ul>
+
+<h3>🔍 Debugging Steps</h3>
+<ul>
+<li>Identify the bug</li>
+<li>Reproduce the error</li>
+<li>Locate the source line</li>
+<li>Analyze the cause</li>
+<li>Fix the code</li>
+<li>Retest</li>
+<li>Confirm the fix</li>
+</ul>
+
+<h3>🧰 Debugging Techniques</h3>
+<table>
+<tr><th>Technique</th><th>Description</th></tr>
+<tr><td>Print statements</td><td>Check values step-by-step</td></tr>
+<tr><td>Debugger Tools</td><td>Breakpoints, step-into, variable watch</td></tr>
+<tr><td>Code Review</td><td>Manual checking</td></tr>
+<tr><td>Rubber Duck Debugging</td><td>Explain code to a toy/person</td></tr>
+<tr><td>Logging</td><td>Record program events</td></tr>
+</table>
+
+<h3>🐞 Debugging Example</h3>
+
+<pre>
+x = 10
+y = 0
+print(x / y)  # Error: Division by zero
+
+# Debugging Fix
+if y != 0:
+    print(x / y)
+else:
+    print("Cannot divide by zero")
+</pre>
+
+<h3>🪲 Debugging Flowchart</h3>
+
+<div class="flowchart">
+
+    <div class="box">Bug Reported</div>
+    <span class="arrow">⬇️</span>
+
+    <div class="box">Reproduce Bug</div>
+    <span class="arrow">⬇️</span>
+
+    <div class="box">Locate Error</div>
+    <span class="arrow">⬇️</span>
+
+    <div class="box">Analyze Root Cause</div>
+    <span class="arrow">⬇️</span>
+
+    <div class="box">Fix the Code</div>
+    <span class="arrow">⬇️</span>
+
+    <div class="box">Retest Program</div>
+    <span class="arrow">⬇️</span>
+
+    <div class="box">Fixed?</div>
+
+    <span class="arrow">⬇️ Yes</span>
+    <div class="box">Close Issue</div>
+
+    <span class="arrow">⬇️ No</span>
+    <div class="box">Repeat Debugging</div>
+</div>
+</div>
+
+<div class="section">
+<h2>🆚 Difference Between Testing and Debugging</h2>
+
+<table>
+<tr><th>Feature</th><th>Testing</th><th>Debugging</th></tr>
+<tr><td>Meaning</td><td>Finding defects</td><td>Fixing defects</td></tr>
+<tr><td>Who performs?</td><td>Testers / QA</td><td>Developers</td></tr>
+<tr><td>Goal</td><td>Check correctness</td><td>Correct incorrectness</td></tr>
+<tr><td>Focus</td><td>Output</td><td>Logic & flow</td></tr>
+<tr><td>Time</td><td>Before release</td><td>Whenever bugs appear</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>🌍 Real-Life Analogy</h2>
+<p><b>Testing</b> = Taking your car for inspection.</p>
+<p><b>Debugging</b> = Mechanic repairing the issue found.</p>
+</div>
+
+<div class="section">
+<h2>💡 Applications & Usage</h2>
+
+<h3>Testing</h3>
+<ul>
+<li>Testing apps on various devices</li>
+<li>Checking online payment systems</li>
+<li>Validating databases</li>
+<li>Verifying ML model outputs</li>
+</ul>
+
+<h3>Debugging</h3>
+<ul>
+<li>Fixing website crashes</li>
+<li>Mobile app bug fixes</li>
+<li>Server error handling</li>
+<li>Fixing wrong ML predictions</li>
+</ul>
+</div>
+
 </body>
 </html>
-
