@@ -6,88 +6,154 @@
 <title>Testing & Debugging in Programming</title>
 
 <style>
-    body {
-        font-family: "Segoe UI", Arial, sans-serif;
-        background: #f7f9fc;
-        margin: 0;
-        padding: 20px;
-        line-height: 1.6;
-        color: #222;
-    }
+/* ------------ ROOT THEME VARIABLES ------------ */
+:root {
+    --bg: #f7f9fc;
+    --text: #222;
+    --card-bg: #ffffff;
+    --flow-bg: #eef3ff;
+    --flow-border: #4a6cf7;
+    --table-bg: #fff;
+    --table-head: #4a6cf7;
+}
 
-    h1, h2, h3 {
-        color: #2c3e50;
-    }
+.dark {
+    --bg: #0f1116;
+    --text: #eaeaea;
+    --card-bg: #1a1d24;
+    --flow-bg: #1d2333;
+    --flow-border: #6d89ff;
+    --table-bg: #1a1d24;
+    --table-head: #6d89ff;
+}
 
-    .section {
-        background: #ffffff;
-        padding: 20px;
-        margin: 20px 0;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    }
+/* ------------ GLOBAL STYLING ------------ */
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    transition: 0.3s ease-in-out;
+}
 
-    .flowchart {
-        margin: 20px auto;
-        padding: 20px;
-        background: #eef3ff;
-        border-radius: 12px;
-        width: 90%;
-        text-align: center;
-        border-left: 5px solid #4a6cf7;
-    }
+h1, h2, h3 {
+    color: var(--text);
+}
 
-    .box {
-        display: inline-block;
-        padding: 12px 18px;
-        background: white;
-        border: 2px solid #4a6cf7;
-        border-radius: 10px;
-        margin: 10px;
-        font-weight: bold;
-    }
+.section {
+    background: var(--card-bg);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
 
-    .arrow {
-        font-size: 24px;
-        font-weight: bold;
-        margin: 5px 0;
-        color: #444;
-        display: block;
-    }
+/* ------------ THEME SWITCH BUTTON ------------ */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--flow-border);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.theme-toggle:hover {
+    opacity: 0.8;
+}
 
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        margin-top: 10px;
-    }
+/* ------------ FLOWCHART ------------ */
+.flowchart {
+    margin: 20px auto;
+    padding: 20px;
+    background: var(--flow-bg);
+    border-radius: 12px;
+    width: 90%;
+    text-align: center;
+    border-left: 5px solid var(--flow-border);
+}
 
-    table, th, td {
-        border: 1px solid #999;
-    }
+.box {
+    display: inline-block;
+    padding: 12px 18px;
+    background: var(--card-bg);
+    border: 2px solid var(--flow-border);
+    border-radius: 10px;
+    margin: 15px;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+}
 
-    th {
-        background: #4a6cf7;
-        color: #fff;
-        padding: 8px;
-    }
+.arrow {
+    font-size: 28px;
+    margin: 5px 0;
+    color: var(--text);
+    opacity: 0;
+    animation: fadeIn 0.6s forwards;
+}
 
-    td {
-        padding: 8px;
-        background: #fff;
-    }
+/* DELAYS for animations */
+.box:nth-child(1) { animation-delay: 0.2s; }
+.box:nth-child(3) { animation-delay: 0.6s; }
+.box:nth-child(5) { animation-delay: 1s; }
+.box:nth-child(7) { animation-delay: 1.4s; }
 
-    pre {
-        background: #222;
-        color: #0f0;
-        padding: 15px;
-        border-radius: 10px;
-        overflow-x: auto;
-    }
+.arrow:nth-child(2) { animation-delay: 0.4s; }
+.arrow:nth-child(4) { animation-delay: 0.8s; }
 
+/* Keyframes */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* ------------ TABLES ------------ */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+}
+table, th, td {
+    border: 1px solid var(--text);
+}
+th {
+    background: var(--table-head);
+    color: #fff;
+    padding: 8px;
+}
+td {
+    padding: 8px;
+    background: var(--table-bg);
+}
+
+/* ------------ CODE BLOCK ------------ */
+pre {
+    background: #000;
+    color: #00ff6a;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: auto;
+}
 </style>
 </head>
 
 <body>
+
+<button class="theme-toggle" onclick="toggleTheme()">🌗 Toggle Theme</button>
 
 <h1>✅ Testing and Debugging in Programming</h1>
 
@@ -100,51 +166,40 @@
 
 <div class="section">
 <h2>🎯 1. What is Testing?</h2>
-<p>Testing is the process of executing a program to find errors, check if the output is correct, and ensure the software behaves as expected.</p>
+<p>Testing is the process of executing a program to find errors and ensure the software behaves as expected.</p>
 
 <h3>Purpose of Testing</h3>
 <ul>
 <li>Detect defects before deployment</li>
 <li>Improve software quality</li>
-<li>Ensure performance, accuracy, and correctness</li>
-<li>Check if features meet requirements</li>
-</ul>
-
-<h3>When does testing happen?</h3>
-<ul>
-<li>Before launching the software</li>
-<li>After each update</li>
-<li>During development (Unit Testing)</li>
+<li>Ensure accuracy & performance</li>
+<li>Validate requirements</li>
 </ul>
 
 <h3>⚙️ Types of Testing</h3>
-
-<p><b>1️⃣ Manual Testing</b> – Humans test manually.</p>
-<p><b>2️⃣ Automation Testing</b> – Tools test automatically (Selenium, PyTest, JUnit).</p>
+<p><b>Manual Testing</b> – Human testing</p>
+<p><b>Automation Testing</b> – Tool-based testing</p>
 
 <h3>Common Types</h3>
 <table>
-<tr><th>Type</th><th>What it checks</th></tr>
-<tr><td>Unit Testing</td><td>Individual functions or methods</td></tr>
-<tr><td>Integration Testing</td><td>Combined modules interact correctly</td></tr>
-<tr><td>System Testing</td><td>Entire system works properly</td></tr>
-<tr><td>Acceptance Testing</td><td>Final check before release</td></tr>
-<tr><td>Regression Testing</td><td>No old features are broken</td></tr>
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td>Unit Testing</td><td>Tests functions</td></tr>
+<tr><td>Integration Testing</td><td>Tests modules together</td></tr>
+<tr><td>System Testing</td><td>Tests whole system</td></tr>
+<tr><td>Acceptance Testing</td><td>Final approval</td></tr>
+<tr><td>Regression Testing</td><td>Check old features</td></tr>
 </table>
 
-<h3>👀 Example of Testing</h3>
+<h3>👀 Example Test</h3>
 
 <pre>
 def add(a, b):
     return a + b
 
-# Test case
-print(add(2, 3))  # Expected output: 5
+print(add(2, 3))   # Expected output: 5
 </pre>
 
-<p>If output ≠ expected → test fails → debugging required.</p>
-
-<h3>🧪 Testing Flowchart</h3>
+<h3>🧪 Animated Testing Flowchart</h3>
 
 <div class="flowchart">
     <div class="box">Start Testing</div>
@@ -159,69 +214,17 @@ print(add(2, 3))  # Expected output: 5
     <div class="box">Testing Passed</div>
 
     <span class="arrow">⬇️ No</span>
-    <div class="box">Log the Defect</div>
-    <span class="arrow">⬇️</span>
-    <div class="box">Send for Debug</div>
+    <div class="box">Log Defect → Send for Debugging</div>
 </div>
 </div>
 
 <div class="section">
-<h2>🔧 2. What is Debugging?</h2>
-<p>Debugging is the process of identifying, analyzing, and fixing the errors found during testing or program execution.</p>
+<h2>🔧 What is Debugging?</h2>
+<p>Debugging is the process of finding and fixing errors.</p>
 
-<h3>Purpose</h3>
-<ul>
-<li>Solve the defect</li>
-<li>Understand the cause of the error</li>
-<li>Ensure software runs without failures</li>
-</ul>
-
-<h3>When does debugging happen?</h3>
-<ul>
-<li>After a failed test</li>
-<li>When a program crashes</li>
-<li>Unexpected or wrong output appears</li>
-</ul>
-
-<h3>🔍 Debugging Steps</h3>
-<ul>
-<li>Identify the bug</li>
-<li>Reproduce the error</li>
-<li>Locate the source line</li>
-<li>Analyze the cause</li>
-<li>Fix the code</li>
-<li>Retest</li>
-<li>Confirm the fix</li>
-</ul>
-
-<h3>🧰 Debugging Techniques</h3>
-<table>
-<tr><th>Technique</th><th>Description</th></tr>
-<tr><td>Print statements</td><td>Check values step-by-step</td></tr>
-<tr><td>Debugger Tools</td><td>Breakpoints, step-into, variable watch</td></tr>
-<tr><td>Code Review</td><td>Manual checking</td></tr>
-<tr><td>Rubber Duck Debugging</td><td>Explain code to a toy/person</td></tr>
-<tr><td>Logging</td><td>Record program events</td></tr>
-</table>
-
-<h3>🐞 Debugging Example</h3>
-
-<pre>
-x = 10
-y = 0
-print(x / y)  # Error: Division by zero
-
-# Debugging Fix
-if y != 0:
-    print(x / y)
-else:
-    print("Cannot divide by zero")
-</pre>
-
-<h3>🪲 Debugging Flowchart</h3>
+<h3>🪲 Animated Debugging Flowchart</h3>
 
 <div class="flowchart">
-
     <div class="box">Bug Reported</div>
     <span class="arrow">⬇️</span>
 
@@ -231,17 +234,16 @@ else:
     <div class="box">Locate Error</div>
     <span class="arrow">⬇️</span>
 
-    <div class="box">Analyze Root Cause</div>
+    <div class="box">Analyze Cause</div>
     <span class="arrow">⬇️</span>
 
-    <div class="box">Fix the Code</div>
+    <div class="box">Fix Code</div>
     <span class="arrow">⬇️</span>
 
-    <div class="box">Retest Program</div>
+    <div class="box">Retest</div>
     <span class="arrow">⬇️</span>
 
     <div class="box">Fixed?</div>
-
     <span class="arrow">⬇️ Yes</span>
     <div class="box">Close Issue</div>
 
@@ -250,44 +252,12 @@ else:
 </div>
 </div>
 
-<div class="section">
-<h2>🆚 Difference Between Testing and Debugging</h2>
-
-<table>
-<tr><th>Feature</th><th>Testing</th><th>Debugging</th></tr>
-<tr><td>Meaning</td><td>Finding defects</td><td>Fixing defects</td></tr>
-<tr><td>Who performs?</td><td>Testers / QA</td><td>Developers</td></tr>
-<tr><td>Goal</td><td>Check correctness</td><td>Correct incorrectness</td></tr>
-<tr><td>Focus</td><td>Output</td><td>Logic & flow</td></tr>
-<tr><td>Time</td><td>Before release</td><td>Whenever bugs appear</td></tr>
-</table>
-</div>
-
-<div class="section">
-<h2>🌍 Real-Life Analogy</h2>
-<p><b>Testing</b> = Taking your car for inspection.</p>
-<p><b>Debugging</b> = Mechanic repairing the issue found.</p>
-</div>
-
-<div class="section">
-<h2>💡 Applications & Usage</h2>
-
-<h3>Testing</h3>
-<ul>
-<li>Testing apps on various devices</li>
-<li>Checking online payment systems</li>
-<li>Validating databases</li>
-<li>Verifying ML model outputs</li>
-</ul>
-
-<h3>Debugging</h3>
-<ul>
-<li>Fixing website crashes</li>
-<li>Mobile app bug fixes</li>
-<li>Server error handling</li>
-<li>Fixing wrong ML predictions</li>
-</ul>
-</div>
+<script>
+/* ------------- THEME TOGGLE JS ------------- */
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+}
+</script>
 
 </body>
 </html>
